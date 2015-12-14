@@ -1,3 +1,4 @@
+/* @flow*/
 /**
  * 启动闪屏
  * @author C.L.Wang

@@ -1,6 +1,4 @@
-/**
- * Created by wangchenlong on 15/11/29.
- */
+/* @flow*/
 'use strict';
 
 var React = require('react-native');
@@ -9,9 +7,9 @@ var {
   View,
   Navigator,
   BackAndroid,
-  } = React;
+} = React;
 
-var styles = require('./styles');
+var styles = require('./styles'); // 样式
 
 var TimerMixin = require('react-timer-mixin'); // RN的计时器
 
@@ -19,9 +17,8 @@ var SplashScreen = require('./splash_screen/index'); // 飞屏
 
 var MainScreen = require('./main_screen/index'); // 主屏
 
-var StoryScreen = require('./story_screen/index'); // 内容屏
-
 var _navigator; // 页面管理器
+
 
 // 后退按钮
 BackAndroid.addEventListener('hardwareBackPress', function () {
@@ -49,46 +46,39 @@ var LearningRN = React.createClass({
       ()=> {
         this.setState({splashed: false});
       }, 2000);
-  },
+    },
 
-  // 线路映射
-  routeMapper: function (route, navigator) {
-    _navigator = navigator;
+    // 线路映射
+    routeMapper: function (route: Map, navigator: Navigator) {
+      _navigator = navigator;
 
-    if (route.name === 'home') {
-      return (
-        <View style={styles.container}>
-          <MainScreen/>
-        </View>
-      );
-    } else if (route.name === 'story') {
-      return (
-        <View style={styles.container}>
-          <StoryScreen/>
-        </View>
-      );
-    }
-  },
+      if (route.name === 'home') {
+        return (
+          <View style={styles.container}>
+            <MainScreen/>
+          </View>
+        );
+      }
+    },
 
-  render: function () {
-    if (!this.state.splashed) {
-      // 初始路径
-      var initialRoute = {name: 'home'};
+    render: function () {
+      if (!this.state.splashed) {
+        // 初始路径
+        var initialRoute = {name: 'home'};
 
-      return (
-        <Navigator
+        return (
+          <Navigator
           style={styles.container}
           initialRoute={initialRoute}
           configureScene={() => Navigator.SceneConfigs.FadeAndroid}
           renderScene={this.routeMapper}/>
-      );
-    } else {
-      return (
-        /*飞屏*/
-        <SplashScreen/>
-      );
+        );
+      } else {
+        return (
+          <SplashScreen/> /*飞屏*/
+        );
+      }
     }
-  }
-});
+  });
 
-module.exports = LearningRN;
+  module.exports = LearningRN;

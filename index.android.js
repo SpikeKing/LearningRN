@@ -1,5 +1,6 @@
+/* @flow */
 /**
- * 春雨新闻
+ * 测试
  * @author wangchenlong
  */
 'use strict';
@@ -11,5 +12,4 @@ var {
 
 var LearningRN = require('./main_modules/index.js');
 
-//noinspection JSCheckFunctionSignatures
 AppRegistry.registerComponent('LearningRN', () => LearningRN);
